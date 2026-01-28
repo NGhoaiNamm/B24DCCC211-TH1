@@ -36,6 +36,18 @@
 		component: './RandomUser',
 		icon: 'ArrowsAltOutlined',
 	},
+	{
+		path: '/doan-so',
+		name: 'Trò Chơi',
+		component: './TroChoi',
+		icon: 'RightCircleOutlined',
+	},
+	{
+		path: '/todo-list',
+		name: 'TodoList',
+		component: './ToDoList',
+		icon: 'CheckSquareOutlined',
+	},
 
 	// DANH MUC HE THONG
 	// {
