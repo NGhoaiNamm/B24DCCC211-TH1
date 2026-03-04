@@ -48,6 +48,18 @@
 		component: './ToDoList',
 		icon: 'CheckSquareOutlined',
 	},
+	{
+		path: '/oan-tu-ti',
+		name: 'Trò chơi Oẳn Tù Tì',
+		icon: 'SmileOutlined',
+		component: './OanTuTi',
+	},
+	{
+		path: '/quan-ly-cau-hoi',
+		name: 'Ngân hàng Câu hỏi',
+		icon: 'DatabaseOutlined',
+		component: './QuestionBank',
+	},
 
 	// DANH MUC HE THONG
 	// {
