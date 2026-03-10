@@ -91,7 +91,7 @@ export default function questionBank() {
 	const [examStructures, setExamStructures] = useState<ExamStructure[]>(() => initData('savedExamStructures', []));
 	const [savedExams, setSavedExams] = useState<SavedExam[]>(() => initData('savedExamsData', []));
 
-	// --- HÀM THÊM/SỬA/XÓA DANH MỤC VÀ CÂU HỎI ---
+	// HÀM THÊM/SỬA/XÓA DANH MỤC VÀ CÂU HỎI
 	const updateCategory = useCallback((id: string, name: string) => {
 		setCategories((prev) => {
 			const updated = prev.map((c) => (c.id === id ? { ...c, name } : c));
