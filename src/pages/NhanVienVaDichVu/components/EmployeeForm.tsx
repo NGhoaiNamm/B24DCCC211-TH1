@@ -1,46 +1,46 @@
-import { useState } from "react";
+import { Form, Input, InputNumber, Button } from 'antd';
+import { Employee } from '@/models/nhanvienvadichvu/employee';
 
-export default function EmployeeForm({ onSubmit }: any) {
-    const [name, setName] = useState("");
-    const [maxCustomer, setMaxCustomer] = useState(0);
-    const [schedule, setSchedule] = useState("");
+interface EmployeeFormProps {
+    onSubmit: (values: Omit<Employee, 'id'>) => void;
+}
 
-    const handleSubmit = () => {
-        onSubmit({
-            id: Date.now().toString(),
-            name,
-            maxCustomerPerDay: maxCustomer,
-            workSchedule: schedule,
-        });
+export default function EmployeeForm({ onSubmit }: EmployeeFormProps) {
+    const [form] = Form.useForm();
 
-        setName("");
-        setMaxCustomer(0);
-        setSchedule("");
+    const handleFinish = (values: Omit<Employee, 'id'>) => {
+        onSubmit(values);
+        form.resetFields();
     };
 
     return (
-        <div>
-            <h3>Thêm nhân viên</h3>
-
-            <input
-                placeholder="Tên"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
-
-            <input
-                placeholder="Số khách/ngày"
-                type="number"
-                onChange={(e) => setMaxCustomer(Number(e.target.value))}
-            />
-
-            <input
-                placeholder="Lịch làm việc"
-                value={schedule}
-                onChange={(e) => setSchedule(e.target.value)}
-            />
-
-            <button onClick={handleSubmit}>Thêm</button>
-        </div>
+        <Form form={form} layout="inline" onFinish={handleFinish} style={{ marginBottom: 16 }}>
+            <Form.Item
+                name="name"
+                label="Tên"
+                rules={[{ required: true, message: 'Vui lòng nhập tên!' }]}
+            >
+                <Input placeholder="Tên nhân viên" />
+            </Form.Item>
+            <Form.Item
+                name="maxCustomerPerDay"
+                label="Số khách tối đa"
+                rules={[{ required: true, message: 'Vui lòng nhập số khách!' }]}
+            >
+                <InputNumber min={1} placeholder="Số khách" />
+            </Form.Item>
+            <Form.Item
+                name="workSchedule"
+                label="Lịch làm việc"
+                rules={[{ required: true, message: 'Vui lòng nhập lịch làm việc!' }]}
+            >
+                <Input placeholder="Lịch làm việc" />
+            </Form.Item>
+            <Form.Item>
+                <Button type="primary" htmlType="submit">
+                    Thêm Nhân Viên
+                </Button>
+            </Form.Item>
+        </Form>
     );
 }

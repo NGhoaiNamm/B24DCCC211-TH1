@@ -1,27 +1,51 @@
-export default function ServiceTable({ data, onDelete }: any) {
-    return (
-        <table style={{ borderCollapse: "collapse", width: "100%" }}>
-            <thead>
-                <tr>
-                    <th>Tên</th>
-                    <th>Giá</th>
-                    <th>Thời gian</th>
-                    <th>Hành động</th>
-                </tr>
-            </thead>
+import { Table, Popconfirm, Button } from 'antd';
+import { Service } from '@/models/nhanvienvadichvu/service';
 
-            <tbody>
-                {data.map((s: any) => (
-                    <tr key={s.id}>
-                        <td>{s.name}</td>
-                        <td>{s.price}</td>
-                        <td>{s.duration} phút</td>
-                        <td>
-                            <button onClick={() => onDelete(s.id)}>Xóa</button>
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+interface ServiceTableProps {
+    services: Service[];
+    onDelete: (id: string) => void;
+}
+
+export default function ServiceTable({ services, onDelete }: ServiceTableProps) {
+    const columns = [
+        {
+            title: 'Tên dịch vụ',
+            dataIndex: 'name',
+            key: 'name',
+        },
+        {
+            title: 'Giá',
+            dataIndex: 'price',
+            key: 'price',
+            render: (price: number) => `${price.toLocaleString()} VND`,
+        },
+        {
+            title: 'Thời gian (phút)',
+            dataIndex: 'duration',
+            key: 'duration',
+        },
+        {
+            title: 'Hành động',
+            key: 'action',
+            render: (_text: string, record: Service) => (
+                <Popconfirm
+                    title="Bạn có chắc muốn xóa?"
+                    onConfirm={() => onDelete(record.id)}
+                >
+                    <Button type="link" danger>
+                        Xóa
+                    </Button>
+                </Popconfirm>
+            ),
+        },
+    ];
+
+    return (
+        <Table
+            columns={columns}
+            dataSource={services}
+            rowKey="id"
+            pagination={{ pageSize: 10 }}
+        />
     );
 }
