@@ -62,13 +62,39 @@
 	},
 
 	//
-	{
-		path: '/quan-ly-nhan-vien-va-dich-vu',
+	
+///////////////////////////////////
+    // QUẢN LÝ ĐẶT LỊCH HỆ THỐNG
+    {
+        path: '/booking-management',
+        name: 'Quản lý Đặt lịch',
+        icon: 'CalendarOutlined',
+        routes: [
+            {                path: '/booking-management/staff',
+                redirect: '/booking-management/quan-ly-nhan-vien-va-dich-vu',
+            },
+            { 		path: '/booking-management/quan-ly-nhan-vien-va-dich-vu',
 		name: 'Nhân viên & Dịch vụ',
 		icon: 'DatabaseOutlined',
 		component: './NhanVienVaDichVu',
 	},
-
+            {
+                path: '/booking-management/appointments',
+                name: 'Danh sách Lịch hẹn',
+                component: './Booking/AppointmentList',
+            },
+            {
+                path: '/booking-management/reviews',
+                name: 'Đánh giá & Phản hồi',
+                // component: './Booking/Reviews',
+            },
+            {
+                path: '/booking-management/statistics',
+                name: 'Thống kê & Báo cáo',
+                component: './Booking/Statistics',
+            },
+        ],
+    },
 	// DANH MUC HE THONG
 	// {
 	// 	name: 'DanhMuc',
