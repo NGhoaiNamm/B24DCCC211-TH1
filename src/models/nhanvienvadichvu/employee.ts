@@ -4,7 +4,7 @@ import { getEmployees, saveEmployees } from "@/services/NhanVienVaDichVu/employe
 export interface Employee {
     id: string;
     name: string;
-    maxCustomerPerDay: number;
+    maxCustomer: number;
     workSchedule: string;
 }
 
