@@ -61,6 +61,14 @@
 		component: './QuestionBank',
 	},
 
+	//
+	{
+		path: '/quan-ly-nhan-vien-va-dich-vu',
+		name: 'Nhân viên & Dịch vụ',
+		icon: 'DatabaseOutlined',
+		component: './NhanVienVaDichVu',
+	},
+
 	// DANH MUC HE THONG
 	// {
 	// 	name: 'DanhMuc',
