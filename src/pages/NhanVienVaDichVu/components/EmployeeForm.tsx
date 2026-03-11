@@ -1,15 +1,29 @@
+import React from 'react';
 import { Form, Input, InputNumber, Button } from 'antd';
 import { Employee } from '@/models/nhanvienvadichvu/employee';
 
 interface EmployeeFormProps {
-    onSubmit: (values: Omit<Employee, 'id'>) => void;
+    editingEmployee?: Employee;
+    onSubmit: (values: Employee) => void;
 }
 
-export default function EmployeeForm({ onSubmit }: EmployeeFormProps) {
+export default function EmployeeForm({ editingEmployee, onSubmit }: EmployeeFormProps) {
     const [form] = Form.useForm();
 
+    React.useEffect(() => {
+        if (editingEmployee) {
+            form.setFieldsValue(editingEmployee);
+        } else {
+            form.resetFields();
+        }
+    }, [editingEmployee, form]);
+
     const handleFinish = (values: Omit<Employee, 'id'>) => {
-        onSubmit(values);
+        if (editingEmployee) {
+            onSubmit({ ...values, id: editingEmployee.id });
+        } else {
+            onSubmit({ ...values, id: Date.now().toString() });
+        }
         form.resetFields();
     };
 
@@ -23,7 +37,7 @@ export default function EmployeeForm({ onSubmit }: EmployeeFormProps) {
                 <Input placeholder="Tên nhân viên" />
             </Form.Item>
             <Form.Item
-                name="maxCustomerPerDay"
+                name="maxCustomer"
                 label="Số khách tối đa"
                 rules={[{ required: true, message: 'Vui lòng nhập số khách!' }]}
             >
@@ -38,7 +52,7 @@ export default function EmployeeForm({ onSubmit }: EmployeeFormProps) {
             </Form.Item>
             <Form.Item>
                 <Button type="primary" htmlType="submit">
-                    Thêm Nhân Viên
+                    {editingEmployee ? 'Cập Nhật Nhân Viên' : 'Thêm Nhân Viên'}
                 </Button>
             </Form.Item>
         </Form>

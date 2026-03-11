@@ -21,6 +21,12 @@ export default function useEmployeeModel() {
         saveEmployees(newData);
     };
 
+    const updateEmployee = (u: Employee) => {
+        const newData = employees.map((e) => (e.id === u.id ? u : e));
+        setEmployees(newData);
+        saveEmployees(newData);
+    };
+
     const deleteEmployee = (id: string) => {
         const newData = employees.filter((e) => e.id !== id);
         setEmployees(newData);
@@ -30,6 +36,7 @@ export default function useEmployeeModel() {
     return {
         employees,
         addEmployee,
+        updateEmployee,
         deleteEmployee,
     };
 }

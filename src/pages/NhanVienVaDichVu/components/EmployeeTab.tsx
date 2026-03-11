@@ -1,18 +1,29 @@
+import React from 'react';
 import useEmployeeModel, { Employee } from '@/models/nhanvienvadichvu/employee';
 import EmployeeForm from './EmployeeForm';
 import EmployeeTable from './EmployeeTable';
 
 export default function EmployeeTab() {
-    const { employees, addEmployee, deleteEmployee } = useEmployeeModel();
+    const { employees, addEmployee, updateEmployee, deleteEmployee } = useEmployeeModel();
+    const [editingEmployee, setEditingEmployee] = React.useState<Employee | undefined>();
 
-    const handleAddEmployee = (values: Omit<Employee, 'id'>) => {
-        addEmployee({ ...values, id: Date.now().toString() });
+    const handleSubmit = (values: Employee) => {
+        if (editingEmployee) {
+            updateEmployee(values);
+            setEditingEmployee(undefined);
+        } else {
+            addEmployee(values);
+        }
     };
 
     return (
         <>
-            <EmployeeForm onSubmit={handleAddEmployee} />
-            <EmployeeTable employees={employees} onDelete={deleteEmployee} />
+            <EmployeeForm editingEmployee={editingEmployee} onSubmit={handleSubmit} />
+            <EmployeeTable
+                employees={employees}
+                onEdit={setEditingEmployee}
+                onDelete={deleteEmployee}
+            />
         </>
     );
 }

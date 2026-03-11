@@ -3,10 +3,11 @@ import { Employee } from '@/models/nhanvienvadichvu/employee';
 
 interface EmployeeTableProps {
     employees: Employee[];
+    onEdit: (employee: Employee) => void;
     onDelete: (id: string) => void;
 }
 
-export default function EmployeeTable({ employees, onDelete }: EmployeeTableProps) {
+export default function EmployeeTable({ employees, onEdit, onDelete }: EmployeeTableProps) {
     const columns = [
         {
             title: 'Tên',
@@ -15,8 +16,8 @@ export default function EmployeeTable({ employees, onDelete }: EmployeeTableProp
         },
         {
             title: 'Số khách tối đa/ngày',
-            dataIndex: 'maxCustomerPerDay',
-            key: 'maxCustomerPerDay',
+            dataIndex: 'maxCustomer',
+            key: 'maxCustomer',
         },
         {
             title: 'Lịch làm việc',
@@ -27,14 +28,19 @@ export default function EmployeeTable({ employees, onDelete }: EmployeeTableProp
             title: 'Hành động',
             key: 'action',
             render: (_text: string, record: Employee) => (
-                <Popconfirm
-                    title="Bạn có chắc muốn xóa?"
-                    onConfirm={() => onDelete(record.id)}
-                >
-                    <Button type="link" danger>
-                        Xóa
+                <>
+                    <Button type="link" onClick={() => onEdit(record)}>
+                        Sửa
                     </Button>
-                </Popconfirm>
+                    <Popconfirm
+                        title="Bạn có chắc muốn xóa?"
+                        onConfirm={() => onDelete(record.id)}
+                    >
+                        <Button type="link" danger>
+                            Xóa
+                        </Button>
+                    </Popconfirm>
+                </>
             ),
         },
     ];
