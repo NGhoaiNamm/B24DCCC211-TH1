@@ -86,7 +86,7 @@
             {
                 path: '/booking-management/reviews',
                 name: 'Đánh giá & Phản hồi',
-                // component: './Booking/Reviews',
+                component: './Booking/Reviews',
             },
             {
                 path: '/booking-management/statistics',

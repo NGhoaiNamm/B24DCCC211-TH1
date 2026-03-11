@@ -1,10 +1,12 @@
-import { Table, Form, Select, DatePicker, Button, Popconfirm } from 'antd';
+import { Table, Form, Select, DatePicker, Button, Popconfirm, Space } from 'antd';
+import { useHistory } from 'umi';
 import moment from 'moment';
 import useEmployeeModel from '@/models/nhanvienvadichvu/employee';
 import useServiceModel from '@/models/nhanvienvadichvu/service';
 import useAppointmentModel, { Appointment } from '@/models/nhanvienvadichvu/appointment';
 
 export default function AppointmentList() {
+    const history = useHistory();
     const { employees } = useEmployeeModel();
     const { services } = useServiceModel();
     const { appointments, addAppointment, deleteAppointment } = useAppointmentModel();
@@ -53,21 +55,31 @@ export default function AppointmentList() {
             title: 'Hành động',
             key: 'action',
             render: (_: any, record: Appointment) => (
-                <Popconfirm
-                    title="Xóa lịch hẹn này?"
-                    onConfirm={() => deleteAppointment(record.id)}
-                >
-                    <Button type="link" danger>
-                        Xóa
+                <Space>
+                    <Button type="primary" size="small" onClick={() => history.push('/booking-management/reviews')}>
+                        Đánh giá
                     </Button>
-                </Popconfirm>
+                    <Popconfirm
+                        title="Xóa lịch hẹn này?"
+                        onConfirm={() => deleteAppointment(record.id)}
+                    >
+                        <Button type="link" danger>
+                            Xóa
+                        </Button>
+                    </Popconfirm>
+                </Space>
             ),
         },
     ];
 
     return (
         <div>
-            <h2>Danh sách Lịch hẹn</h2>
+            <Space style={{ marginBottom: 16 }}>
+                <h2 style={{ margin: 0 }}>Danh sách Lịch hẹn</h2>
+                <Button onClick={() => history.push('/booking-management/reviews')}>
+                    Xem đánh giá & phản hồi
+                </Button>
+            </Space>
             <Form form={form} layout="inline" onFinish={handleFinish} style={{ marginBottom: 16 }}>
                 <Form.Item
                     name="employeeId"
