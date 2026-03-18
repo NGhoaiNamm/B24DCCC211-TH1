@@ -1,4 +1,4 @@
-﻿export default [
+export default [
 	{
 		path: '/user',
 		layout: false,
@@ -59,6 +59,38 @@
 		name: 'Ngân hàng Câu hỏi',
 		icon: 'DatabaseOutlined',
 		component: './QuestionBank',
+	},
+	{
+		name: 'Quản lý văn bằng',
+		path: '/van-bang',
+		icon: 'SolutionOutlined',
+		routes: [
+			{
+				name: 'Tra cứu',
+				path: 'tra-cuu',
+				component: './VanBang/TraCuu',
+			},
+			{
+				name: 'Sổ văn bằng',
+				path: 'so-van-bang',
+				component: './VanBang/SoVanBang',
+			},
+			{
+				name: 'Quyết định',
+				path: 'quyet-dinh',
+				component: './VanBang/QuyetDinh',
+			},
+			{
+				name: 'Theo dõi văn bằng',
+				path: 'thong-tin-van-bang',
+				component: './VanBang/ThongTinVanBang',
+			},
+			{
+				name: 'Cấu hình biểu mẫu',
+				path: 'cau-hinh',
+				component: './VanBang/CauHinh',
+			},
+		],
 	},
 
 	// DANH MUC HE THONG
