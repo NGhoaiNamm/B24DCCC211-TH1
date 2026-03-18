@@ -1,6 +1,5 @@
 import { Reducer, Effect } from 'umi';
 
-// 1. Export Interface để các file khác dùng lại (QUAN TRỌNG)
 export interface CongViec {
 	id: number;
 	noiDung: string;
