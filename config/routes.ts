@@ -61,6 +61,33 @@ export default [
 		component: './QuestionBank',
 	},
 	{
+		name: 'Quản lý Câu lạc bộ',
+		path: '/quan-ly-cau-lac-bo',
+		icon: 'TeamOutlined',
+		routes: [
+			{
+				name: 'Câu lạc bộ',
+				path: 'cau-lac-bo',
+				component: './CauLacBo',
+			},
+			{
+				name: 'Đơn đăng ký',
+				path: 'don-dang-ky',
+				component: './DonDangKy',
+			},
+			{
+				name: 'Thành viên',
+				path: 'thanh-vien',
+				component: './ThanhVien',
+			},
+			{
+				name: 'Báo cáo',
+				path: 'bao-cao',
+				component: './BaoCao',
+			},
+		],
+	},
+	{
 		name: 'Quản lý văn bằng',
 		path: '/van-bang',
 		icon: 'SolutionOutlined',
