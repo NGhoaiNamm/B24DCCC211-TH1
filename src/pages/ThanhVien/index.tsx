@@ -4,6 +4,7 @@ import type { IColumn } from '@/components/Table/typing';
 import { useModel, useLocation } from 'umi';
 import { Button, Space, Modal, Select } from 'antd';
 import { SwapOutlined } from '@ant-design/icons';
+import FormThanhVien from './components/Form';
 
 const ThanhVien = () => {
 	const { setCondition, selectedIds, setSelectedIds, updateManyClub } = useModel('donDangKy');
@@ -94,6 +95,9 @@ const ThanhVien = () => {
 				title="Quản lý Thành viên Câu lạc bộ"
 				modelName="donDangKy"
 				columns={columns}
+				Form={FormThanhVien}
+				widthDrawer={600}
+				formType="Drawer"
 				rowSelection
 				otherButtons={extraButtons}
 			/>
