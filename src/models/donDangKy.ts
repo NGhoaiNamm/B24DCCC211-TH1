@@ -60,7 +60,7 @@ export default () => {
 	const addModel = async (payload: any) => {
 		const dataStr = localStorage.getItem('donDangKyData');
 		const data = dataStr ? JSON.parse(dataStr) : [];
-		const newItem = { ...payload, _id: Date.now().toString(), trangThai: 'Pending' };
+		const newItem = { ...payload, _id: Date.now().toString(), trangThai: payload.trangThai || 'Pending' };
 		data.unshift(newItem);
 		localStorage.setItem('donDangKyData', JSON.stringify(data));
 		getModel();

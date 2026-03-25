@@ -1,6 +1,7 @@
 import { Button, Form, Input, Switch } from 'antd';
 import { useModel } from 'umi';
 import { useEffect } from 'react';
+import UploadFile from '@/components/Upload/UploadFile';
 
 const FormCauLacBo = () => {
 	const [form] = Form.useForm();
@@ -52,10 +53,18 @@ const FormCauLacBo = () => {
 			</Form.Item>
 
 			<Form.Item
+				label='Chi tiết'
+				name='moTaHtml'
+                hidden
+			>
+				<Input />
+			</Form.Item>
+
+			<Form.Item
 				label='Ảnh đại diện'
 				name='anhDaiDien'
 			>
-				<Input placeholder='Nhập link ảnh' />
+				<UploadFile isAvatar buttonDescription='Tải ảnh lên' accept='image/*' />
 			</Form.Item>
 
 			<Form.Item
