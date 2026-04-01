@@ -37,6 +37,12 @@
 		icon: 'ArrowsAltOutlined',
 	},
 	{
+		path: '/quan-ly-du-lich',
+		name: 'Quản lý du lịch',
+		component: './QuanLyDuLich',
+		icon: 'CompassOutlined',
+	},
+	{
 		path: '/doan-so',
 		name: 'Trò Chơi',
 		component: './TroChoi',
