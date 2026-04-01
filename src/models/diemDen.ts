@@ -9,7 +9,7 @@ const defaultData: IDiemDen[] = [
 		ten: 'Vịnh Hạ Long',
 		loai: 'bien',
 		moTa: '<p>Vịnh Hạ Long là một kỳ quan thiên nhiên thế giới với hàng nghìn đảo đá vôi nhô lên từ mặt biển xanh ngọc bích.</p>',
-		hinhAnh: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sung_Sot_cave_Ha_Long_Bay.jpg/800px-Sung_Sot_cave_Ha_Long_Bay.jpg',
+		hinhAnh: 'https://emperorcruises.com/wp-content/uploads/2025/05/Vinh-Ha-Long-1.jpg',
 		diaChi: 'Quảng Ninh, Việt Nam',
 		thoiGianThamQuan: 8,
 		chiPhiAnUong: 300000,
@@ -23,7 +23,7 @@ const defaultData: IDiemDen[] = [
 		ten: 'Đà Nẵng',
 		loai: 'thanhPho',
 		moTa: '<p>Đà Nẵng - thành phố đáng sống nhất Việt Nam với những bãi biển đẹp và ẩm thực phong phú.</p>',
-		hinhAnh: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Han-River-Bridge-Da-Nang-Vietnam.jpg/800px-Han-River-Bridge-Da-Nang-Vietnam.jpg',
+		hinhAnh: 'https://hanoitourist.vn/sites/default/files/2026/03/B%C3%80%20N%C3%80%20HILLS.jpg',
 		diaChi: 'Đà Nẵng, Việt Nam',
 		thoiGianThamQuan: 12,
 		chiPhiAnUong: 250000,
@@ -88,11 +88,78 @@ const defaultData: IDiemDen[] = [
 		rating: 4,
 		createdAt: new Date().toISOString(),
 	},
+	{
+		_id: '7',
+		ten: 'Nha Trang',
+		loai: 'bien',
+		moTa: '<p>Nha Trang - thành phố biển sầm uất với những bãi tắm tuyệt đẹp, hải sản tươi ngon và các khu nghỉ dưỡng sang trọng.</p>',
+		hinhAnh: 'https://images.unsplash.com/photo-1559592413-7cbb6f6b8e7e?w=600&auto=format&fit=crop',
+		diaChi: 'Khánh Hoà, Việt Nam',
+		thoiGianThamQuan: 14,
+		chiPhiAnUong: 280000,
+		chiPhiLuTru: 900000,
+		chiPhiDiChuyen: 450000,
+		rating: 4.5,
+		createdAt: new Date().toISOString(),
+	},
+	{
+		_id: '8',
+		ten: 'Mũi Né',
+		loai: 'bien',
+		moTa: '<p>Mũi Né nổi tiếng với những đồi cát đỏ và trắng hùng vĩ, bãi biển dài và các khu resort view biển đẹp mê hồn.</p>',
+		hinhAnh: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&auto=format&fit=crop',
+		diaChi: 'Bình Thuận, Việt Nam',
+		thoiGianThamQuan: 10,
+		chiPhiAnUong: 200000,
+		chiPhiLuTru: 700000,
+		chiPhiDiChuyen: 350000,
+		rating: 4,
+		createdAt: new Date().toISOString(),
+	},
+	{
+		_id: '9',
+		ten: 'Huế',
+		loai: 'thanhPho',
+		moTa: '<p>Huế - cố đô của Việt Nam với Đại Nội, lăng tẩm vua chúa, sông Hương thơ mộng và ẩm thực cung đình độc đáo.</p>',
+		hinhAnh: 'https://images.unsplash.com/photo-1555921015-5532091f6026?w=600&auto=format&fit=crop',
+		diaChi: 'Thừa Thiên Huế, Việt Nam',
+		thoiGianThamQuan: 12,
+		chiPhiAnUong: 180000,
+		chiPhiLuTru: 500000,
+		chiPhiDiChuyen: 200000,
+		rating: 4.5,
+		createdAt: new Date().toISOString(),
+	},
+	{
+		_id: '10',
+		ten: 'Cần Thơ',
+		loai: 'thanhPho',
+		moTa: '<p>Cần Thơ - thành phố miền Tây sông nước với chợ nổi Cái Răng, vườn trái cây và những con kênh rạch chằng chịt đặc trưng.</p>',
+		hinhAnh: 'https://images.unsplash.com/photo-1549494202-bc31c80bb87f?w=600&auto=format&fit=crop',
+		diaChi: 'Cần Thơ, Việt Nam',
+		thoiGianThamQuan: 8,
+		chiPhiAnUong: 150000,
+		chiPhiLuTru: 400000,
+		chiPhiDiChuyen: 250000,
+		rating: 4,
+		createdAt: new Date().toISOString(),
+	},
 ];
 
 const getInitialData = (): IDiemDen[] => {
 	const stored = localStorage.getItem(STORAGE_KEY);
-	if (stored) return JSON.parse(stored);
+	if (stored) {
+		const parsed: IDiemDen[] = JSON.parse(stored);
+		// Merge: thêm các điểm đến mới từ defaultData chưa có trong localStorage
+		const existingIds = new Set(parsed.map((d) => d._id));
+		const newItems = defaultData.filter((d) => !existingIds.has(d._id));
+		if (newItems.length > 0) {
+			const merged = [...parsed, ...newItems];
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+			return merged;
+		}
+		return parsed;
+	}
 	localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultData));
 	return defaultData;
 };
