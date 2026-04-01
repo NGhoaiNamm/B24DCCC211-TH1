@@ -157,6 +157,43 @@ export default [
 		hideInMenu: true,
 	},
 	{
+		name: 'Du Lịch',
+		path: '/du-lich',
+		icon: 'CompassOutlined',
+		routes: [
+			{
+				name: 'Khám Phá',
+				path: 'kham-pha',
+				component: './DuLich/KhamPha',
+				icon: 'SearchOutlined',
+			},
+			{
+				name: 'Lịch Trình',
+				path: 'lich-trinh',
+				component: './DuLich/LichTrinh',
+				icon: 'CalendarOutlined',
+			},
+			{
+				name: 'Ngân Sách',
+				path: 'ngan-sach',
+				component: './DuLich/NganSach',
+				icon: 'WalletOutlined',
+			},
+			{
+				name: 'Admin - Điểm Đến',
+				path: 'admin/diem-den',
+				component: './DuLich/Admin/DiemDen',
+				icon: 'EnvironmentOutlined',
+			},
+			{
+				name: 'Admin - Thống Kê',
+				path: 'admin/thong-ke',
+				component: './DuLich/Admin/ThongKe',
+				icon: 'BarChartOutlined',
+			},
+		],
+	},
+	{
 		path: '/',
 	},
 	{
