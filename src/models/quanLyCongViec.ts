@@ -1,4 +1,4 @@
-import { Effect, Reducer } from 'umi';
+import { Reducer } from 'umi';
 
 export interface CongViecNhom {
 	id: string;
@@ -25,49 +25,35 @@ export interface QuanLyCongViecModelType {
 		capNhatCongViec: Reducer<QuanLyCongViecState>;
 		xoaCongViec: Reducer<QuanLyCongViecState>;
 	};
-	effects: {
-		khoiTao: Effect;
-	};
 }
 
 const luuLocalStorageTasks = (data: CongViecNhom[]) => {
 	localStorage.setItem('quanlycongviec_tasks', JSON.stringify(data));
 };
 
+let initialTasks: CongViecNhom[] = [];
+try {
+	initialTasks = JSON.parse(localStorage.getItem('quanlycongviec_tasks') || '[]');
+} catch (e) {}
+
+let initialUser: string | null = null;
+try {
+	const stored = localStorage.getItem('quanlycongviec_user');
+	if (stored) {
+		initialUser = JSON.parse(stored);
+	}
+} catch (e) {}
+
 const QuanLyCongViecModel: QuanLyCongViecModelType = {
 	namespace: 'quanLyCongViec',
 	state: {
-		currentUser: null,
-		danhSach: [],
-	},
-
-	effects: {
-		*khoiTao(_, { put }) {
-			const currentUser = localStorage.getItem('quanlycongviec_user');
-			if (currentUser) {
-				yield put({
-					type: 'setLogin',
-					payload: currentUser,
-				});
-			}
-
-			const tasksData = localStorage.getItem('quanlycongviec_tasks');
-			if (tasksData) {
-				try {
-					yield put({
-						type: 'taiDuLieuTasks',
-						payload: JSON.parse(tasksData),
-					});
-				} catch (e) {
-					console.error('Lỗi parse dữ liệu công việc:', e);
-				}
-			}
-		},
+		currentUser: initialUser,
+		danhSach: initialTasks,
 	},
 
 	reducers: {
 		setLogin(state, { payload }) {
-			localStorage.setItem('quanlycongviec_user', payload);
+			localStorage.setItem('quanlycongviec_user', JSON.stringify(payload));
 			return { currentUser: payload, danhSach: state?.danhSach || [] };
 		},
 		setLogout(state) {

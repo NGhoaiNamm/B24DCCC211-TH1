@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Modal, Input, Button, Form, message } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { useDispatch, useSelector } from 'umi';
+import { useDispatch } from 'umi';
 
 interface LoginModalProps {
 	visible: boolean;
@@ -10,7 +10,6 @@ interface LoginModalProps {
 const LoginModal: React.FC<LoginModalProps> = ({ visible }) => {
 	const [form] = Form.useForm();
 	const dispatch = useDispatch();
-	const currentUser = useSelector((state: any) => state.quanLyCongViec?.currentUser);
 	const [loading, setLoading] = useState(false);
 
 	const onFinish = (values: { username: string }) => {
@@ -44,9 +43,10 @@ const LoginModal: React.FC<LoginModalProps> = ({ visible }) => {
 			<Form form={form} layout='vertical' onFinish={onFinish}>
 				<Form.Item
 					name='username'
+					label='Tên người dùng'
 					rules={[{ required: true, message: 'Vui lòng nhập tên người dùng!' }]}
 				>
-					<Input size='large' prefix={<UserOutlined />} placeholder='Nhập tên người dùng của bạn...' />
+					<Input size='large' prefix={<UserOutlined />} placeholder='Ví dụ: Alice' />
 				</Form.Item>
 				<Form.Item style={{ marginBottom: 0 }}>
 					<Button type='primary' htmlType='submit' size='large' block loading={loading}>
