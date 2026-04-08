@@ -157,6 +157,33 @@ export default [
 		hideInMenu: true,
 	},
 	{
+		name: 'Quản lý Công việc',
+		path: '/quan-ly-cong-viec',
+		icon: 'ProjectOutlined',
+		routes: [
+			{
+				name: 'Danh sách công việc',
+				path: 'danh-sach',
+				component: './QuanLyCongViec/DanhSach',
+			},
+			{
+				name: 'Phân công của tôi',
+				path: 'phan-cong',
+				component: './QuanLyCongViec/PhanCong',
+			},
+			{
+				name: 'Lịch công việc',
+				path: 'lich',
+				component: './QuanLyCongViec/LichCongViec',
+			},
+			{
+				name: 'Thống kê',
+				path: 'thong-ke',
+				component: './QuanLyCongViec/ThongKe',
+			},
+		],
+	},
+	{
 		name: 'Du Lịch',
 		path: '/du-lich',
 		icon: 'CompassOutlined',
