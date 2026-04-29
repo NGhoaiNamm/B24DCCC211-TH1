@@ -220,6 +220,46 @@ export default [
 			},
 		],
 	},
+	// ===========================
+	// BLOG
+	// ===========================
+	{
+		name: 'Blog',
+		path: '/blog',
+		icon: 'ReadOutlined',
+		routes: [
+			{
+				name: 'Trang chủ Blog',
+				path: '/blog',
+				component: './Blog/TrangChu',
+				exact: true,
+			},
+			{
+				path: '/blog/:slug',
+				component: './Blog/ChiTiet',
+				exact: true,
+				hideInMenu: true,
+			},
+			{
+				name: 'Giới thiệu',
+				path: '/blog/gioi-thieu',
+				component: './Blog/GioiThieu',
+				exact: true,
+			},
+			{
+				name: 'Quản lý bài viết',
+				path: '/blog/admin/bai-viet',
+				component: './Blog/Admin/QuanLyBaiViet',
+				exact: true,
+			},
+			{
+				name: 'Quản lý thẻ',
+				path: '/blog/admin/the',
+				component: './Blog/Admin/QuanLyThe',
+				exact: true,
+			},
+		],
+	},
 	{
 		path: '/',
 	},

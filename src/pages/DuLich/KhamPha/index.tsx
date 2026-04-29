@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
 	Row,
-	Col,
+	Col, //chia layout/
 	Typography,
 	Radio,
 	Slider,

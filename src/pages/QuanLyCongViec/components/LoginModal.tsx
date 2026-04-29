@@ -9,9 +9,9 @@ interface LoginModalProps {
 
 const LoginModal: React.FC<LoginModalProps> = ({ visible }) => {
 	const [form] = Form.useForm();
-	const dispatch = useDispatch();
-	const currentUser = useSelector((state: any) => state.quanLyCongViec?.currentUser);
-	const [loading, setLoading] = useState(false);
+	const dispatch = useDispatch();//gửi dữ liệu lên redux
+	const currentUser = useSelector((state: any) => state.quanLyCongViec?.currentUser);//lấy user hiện tại
+	const [loading, setLoading] = useState(false);//trạng thái nút bấm
 
 	const onFinish = (values: { username: string }) => {
 		setLoading(true);
@@ -20,7 +20,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ visible }) => {
 				dispatch({
 					type: 'quanLyCongViec/setLogin',
 					payload: values.username.trim()
-				});
+				});//gửi username lên redux
 				message.success(`Đăng nhập thành công! Chào ${values.username}`);
 				setLoading(false);
 			} else {
