@@ -20,21 +20,52 @@
 	// DEFAULT MENU
 	{
 		path: '/dashboard',
-		name: 'Dashboard',
-		component: './TrangChu',
+		name: 'TrangChu',
+		component: './Blog/Home',
 		icon: 'HomeOutlined',
 	},
 	{
 		path: '/gioi-thieu',
-		name: 'About',
-		component: './TienIch/GioiThieu',
-		hideInMenu: true,
+		name: 'GioiThieu',
+		component: './Blog/About',
+		icon: 'InfoCircleOutlined',
 	},
+	// {
+	// 	path: '/random-user',
+	// 	name: 'RandomUser',
+	// 	component: './RandomUser',
+	// 	icon: 'ArrowsAltOutlined',
+	// },
 	{
-		path: '/random-user',
-		name: 'RandomUser',
-		component: './RandomUser',
-		icon: 'ArrowsAltOutlined',
+		path: '/blog',
+		name: 'Blog',
+		icon: 'ReadOutlined',
+		routes: [
+			{
+				path: '/blog',
+				exact: true,
+				redirect: '/dashboard',
+			},
+			{
+				path: '/blog/about',
+				redirect: '/gioi-thieu',
+			},
+			{
+				path: '/blog/manage/posts',
+				name: 'BlogManagePosts',
+				component: './Blog/ManagePosts',
+			},
+			{
+				path: '/blog/manage/tags',
+				name: 'BlogManageTags',
+				component: './Blog/ManageTags',
+			},
+			{
+				path: '/blog/:slug',
+				component: './Blog/Detail',
+				hideInMenu: true,
+			},
+		],
 	},
 
 	// DANH MUC HE THONG
